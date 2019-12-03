@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="java8Service" class="com.durga.Java8Service">
+        <property name="lambdaService" ref="lambdaService"/>
+        <property name="streamService" ref="streamService"/>
+    </bean>
+
+    <!--Java8<->Services associated with Different Features Begins-->
+    <bean id="lambdaService" class="com.durga.lambda.LambdaService" >
+        <property name="runnableLambdaService" ref="runnableLambdaService"/>
+        <property name="functionalInterfaceLambdaService" ref="functionalInterfaceLambdaService"/>
+        <property name="comparatorLambdaService" ref="comparatorLambdaService"/>
+    </bean>
+    <bean id="streamService" class="com.durga.stream.StreamService">
+        <property name="filterList" ref="filterList"/>
+        <property name="mapList" ref="mapList"/>
+        <property name="sortedList" ref="sortedList"/>
+    </bean>
+    <!--Java8<->Services associated with Different Features Ends -->
+
+    <!--Lambda<->Replacing Interfaces Begins-->
+    <bean id="runnableLambdaService" class="com.durga.lambda.multithreadinginterface.LambdaRunnableService" />
+    <bean id="functionalInterfaceLambdaService" class="com.durga.lambda.functionalinterface.LambdaFunctionalService">
+        <property name="printWithNoParameter" ref="printWithNoParameter"/>
+        <property name="printWithOneParameter" ref="printWithOneParameter"/>
+        <property name="printWithTwoParameter" ref="printWithTwoParameter"/>
+        <property name="printWithInstanceVariable" ref="printWithInstanceVariable"/>
+    </bean>
+    <bean id="comparatorLambdaService" class="com.durga.lambda.collectioncomparatorinterface.LambdaComparatorService">
+        <property name="setWithAndWithoutLambda" ref="setWithAndWithoutLambda"/>
+        <property name="listWithAndWithoutLambda" ref="listWithAndWithoutLambda"/>
+        <property name="mapWithAndWithoutLambda" ref="mapWithAndWithoutLambda" />
+        <property name="customSortingWithAndWithoutLambda" ref="customSortingWithAndWithoutLambda" />
+    </bean>
+    <!--Lambda<->Replacing Interfaces Ends-->
+
+    <!--Lambda<->Functional Interface Begins -->
+    <bean id="printWithNoParameter" class="com.durga.lambda.functionalinterface.impl.PrintStringWithZeroParameter"/>
+    <bean id="printWithOneParameter" class="com.durga.lambda.functionalinterface.impl.PrintStringLengthWithOneParameter"/>
+    <bean id="printWithTwoParameter" class="com.durga.lambda.functionalinterface.impl.PrintNumberWithReturnType"/>
+    <bean id="printWithInstanceVariable" class="com.durga.lambda.functionalinterface.impl.PrintSumWithInstanceVariable"/>
+    <!--Lambda<->Functional Interface Ends -->
+
+    <!--Lambda<->Collection Begins -->
+    <bean id="setWithAndWithoutLambda" class="com.durga.lambda.collectioncomparatorinterface.collections.SetWithAndWithoutLambda" />
+    <bean id="listWithAndWithoutLambda" class="com.durga.lambda.collectioncomparatorinterface.collections.ListWithAndWithoutLambda"/>
+    <bean id="mapWithAndWithoutLambda" class="com.durga.lambda.collectioncomparatorinterface.collections.MapWithAndWithoutLambda"/>
+    <bean id="customSortingWithAndWithoutLambda" class="com.durga.lambda.collectioncomparatorinterface.collections.customsorting.CustomSortingWithAndWithoutLambda"/>
+    <!--Lambda<->Collection Ends -->
+
+    <!--Stream<->Filter Begin -->
+    <bean id="filterList" class="com.durga.stream.actions.FilterList"/>
+    <!--Stream<->Filter Ends -->
+
+    <!--Stream<->Map Begin -->
+    <bean id="mapList" class="com.durga.stream.actions.MapList"/>
+    <!--Stream<->Map Ends-->
+    <!--Stream<->Sort Begin -->
+    <bean id="sortedList" class="com.durga.stream.actions.SortedList"/>
+    <!--Stream<->Sort Ends -->
+</beans>
