@@ -5,21 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SortedList {
-    private List<Integer> arrList=createList();
-    private List<Integer> createList(){
-        arrList=new ArrayList<Integer>();
-        arrList.add(1);
-        arrList.add(9);
-        arrList.add(3);
-        arrList.add(8);
-        arrList.add(10);
-        arrList.add(6);
-        arrList.add(2);
-        arrList.add(4);
-        arrList.add(5);
-        arrList.add(7);
-        return arrList;
-    }
+    private List<Integer> arrList=CreateNumberedList.getArrList();
+
     public void performSortedList(){
         System.out.println("----------------------------------------Stream : Sort List starts----------------------------------------");
         List<Integer> defaultSorting=arrList.stream().sorted().collect(Collectors.toList());
